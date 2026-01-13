@@ -1,0 +1,18 @@
+name: Automatic DNSTT Deploy
+on: [workflow_dispatch]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and Install
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 62.60.234.233
+          username: root
+          password: "Reza3830063@#"
+          script: |
+            # دانلود اسکریپت خودکار از ریپازیتوری شما
+            curl -L https://raw.githubusercontent.com/alireza-2030/auto_dnstt.sh/main/auto_dnstt.sh -o install.sh
+            chmod +x install.sh
+            sudo ./install.sh
