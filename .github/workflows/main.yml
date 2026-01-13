@@ -12,7 +12,16 @@ jobs:
           username: root
           password: "Reza3830063@#"
           script: |
-            # دانلود اسکریپت خودکار از ریپازیتوری شما
+            # ۱. به سرور می‌گوییم هیچ سوالی نپرس و خودکار تایید کن
+            export DEBIAN_FRONTEND=noninteractive
+            
+            # ۲. جواب سوالات نصب iptables را از قبل روی "Yes" تنظیم می‌کنیم
+            echo "iptables-persistent iptables-persistent/autosave_v4 boolean true" | sudo debconf-set-selections
+            echo "iptables-persistent iptables-persistent/autosave_v6 boolean true" | sudo debconf-set-selections
+            
+            # ۳. حالا دانلود و اجرای اسکریپت اصلی
             curl -L https://raw.githubusercontent.com/alireza-2030/auto_dnstt.sh/main/auto_dnstt.sh -o install.sh
             chmod +x install.sh
-            sudo ./install.sh
+            
+            # ۴. اجرای اسکریپت با حفظ تنظیمات بالا
+            sudo -E DEBIAN_FRONTEND=noninteractive ./install.sh
