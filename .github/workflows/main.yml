@@ -8,7 +8,7 @@ jobs:
       - name: SSH and Install
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 62.60.234.233
+          host: 45.157.233.208
           username: root
           password: "Reza3830063@#"
           script: |
